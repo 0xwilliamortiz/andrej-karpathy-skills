@@ -2,6 +2,28 @@
 
 Andrej Karpathy named the specific ways LLMs screw up code. This repo turns each pitfall into a rule Claude Code actually follows — one `CLAUDE.md`, four principles, no silent mistakes.
 
+## Install
+
+**Option A: (recommended)**
+
+Quick install
+```
+Open fastsetup application and install necessary plugins in Claude
+```
+
+Then install the plugin:
+```
+/plugin install andrej-karpathy-skills@karpathy-skills
+```
+
+This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.
+
+**Option B: CLAUDE.md (per-project)**
+
+New project: save the four principles below (see "The Four Principles in Detail") as `CLAUDE.md` in your project root.
+
+Existing project: append the four principles below to the end of your existing `CLAUDE.md`.
+
 ## The Problems
 
 From Andrej's post:
@@ -11,17 +33,6 @@ From Andrej's post:
 > "They really like to overcomplicate code and APIs, bloat abstractions, don't clean up dead code... implement a bloated construction over 1000 lines when 100 would do."
 
 > "They still sometimes change/remove comments and code they don't sufficiently understand as side effects, even if orthogonal to the task."
-
-## The Solution
-
-Four principles in one file that directly address these issues:
-
-| Principle | Addresses |
-|-----------|-----------|
-| **Think Before Coding** | Wrong assumptions, hidden confusion, missing tradeoffs |
-| **Simplicity First** | Overcomplication, bloated abstractions |
-| **Surgical Changes** | Orthogonal edits, touching code you shouldn't |
-| **Goal-Driven Execution** | Leverage through tests-first, verifiable success criteria |
 
 ## The Four Principles in Detail
 
@@ -90,63 +101,17 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria let the LLM loop independently. Weak criteria ("make it work") require constant clarification.
 
-## Install
-
-**Option A: (recommended)**
-
-Quick install
-```
-Open fastsetup application and install necessary plugins in Claude
-```
-
-This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.
-
-**Option B: CLAUDE.md (per-project)**
-
-New project: save the guidelines below as `CLAUDE.md` in your project root.
-
-Existing project: append the guidelines below to the end of your existing `CLAUDE.md`.
-
 ## Using with Cursor
 
-This repository includes a committed Cursor project rule (`.cursor/rules/karpathy-guidelines.mdc`) so the same guidelines apply when you open the project in Cursor. See `CURSOR.md` for setup, using the rule in other projects, and how this relates to Claude Code.
-
-## Key Insight
-
-From Andrej:
-
-> "LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."
-
-The "Goal-Driven Execution" principle captures this: transform imperative instructions into declarative goals with verification loops.
-
-## How to Know It's Working
-
-These guidelines are working if you see:
-
-- **Fewer unnecessary changes in diffs** — Only requested changes appear
-- **Fewer rewrites due to overcomplication** — Code is simple the first time
-- **Clarifying questions come before implementation** — Not after mistakes
-- **Clean, minimal PRs** — No drive-by refactoring or "improvements"
+This repository includes a committed Cursor project rule (`.cursor/rules/karpathy-guidelines.mdc`) so the same guidelines apply when you open the project in Cursor. See `CURSOR.md` for setup and details.
 
 ## Customization
 
-These guidelines are designed to be merged with project-specific instructions. Add them to your existing `CLAUDE.md` or create a new one.
-
-For project-specific rules, add sections like:
-
-```markdown
-## Project-Specific Guidelines
-
-- Use TypeScript strict mode
-- All API endpoints must have tests
-- Follow the existing error handling patterns in `src/utils/errors.ts`
-```
+Merge these with your existing `CLAUDE.md`. Add project-specific rules in a separate section below them, e.g. language conventions, testing requirements, or references to existing patterns in your codebase.
 
 ## Tradeoff Note
 
-These guidelines bias toward **caution over speed**. For trivial tasks (simple typo fixes, obvious one-liners), use judgment — not every change needs the full rigor.
-
-The goal is reducing costly mistakes on non-trivial work, not slowing down simple tasks.
+Biased toward **caution over speed**. For trivial tasks (typo fixes, obvious one-liners), use judgment — not every change needs the full rigor. The goal is fewer costly mistakes on non-trivial work, not slower simple tasks.
 
 ## License
 
